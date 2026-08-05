@@ -1,0 +1,10 @@
+[
+  {"key":"tech","ar":"التقنية والذكاء الاصطناعي","en":"Technology & AI","threshold":90,"level":"crit","systemAr":"نظام إدارة الأنظمة والبنية التحتية","systemEn":"IT Infrastructure Management System"},
+  {"key":"litigation","ar":"التقاضي","en":"Litigation","threshold":90,"level":"crit","systemAr":"نظام إدارة القضايا","systemEn":"Case Management System"},
+  {"key":"legal","ar":"الشؤون القانونية","en":"Legal Affairs","threshold":85,"level":"high","systemAr":"نظام إدارة العقود","systemEn":"Contracts Management System"},
+  {"key":"hr","ar":"الموارد البشرية","en":"Human Resources","threshold":85,"level":"high","systemAr":"نظام إدارة الموظفين","systemEn":"HR Management System"},
+  {"key":"finance","ar":"المالية","en":"Finance","threshold":85,"level":"high","systemAr":"نظام المدفوعات المالية","systemEn":"Payments System"},
+  {"key":"procurement","ar":"المشتريات","en":"Procurement","threshold":80,"level":"med","systemAr":"نظام المشتريات","systemEn":"Procurement System"},
+  {"key":"supply","ar":"الإمداد","en":"Supply","threshold":80,"level":"med","systemAr":"نظام سلسلة الإمداد","systemEn":"Supply Chain System"},
+  {"key":"operations","ar":"العمليات","en":"Operations","threshold":80,"level":"med","systemAr":"نظام العمليات التشغيلية","systemEn":"Operations System"}
+]
