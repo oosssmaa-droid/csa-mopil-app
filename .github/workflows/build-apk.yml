@@ -1,0 +1,55 @@
+name: Build Android APK
+
+# Builds a real, installable release APK in GitHub's free cloud runners —
+# no local Flutter/Android Studio/SDK needed on your own machine or phone.
+#
+# HOW TO USE (entirely from a phone browser, no computer required):
+#   1) Create a free account at https://github.com if you don't have one.
+#   2) Create a new repository (e.g. "csa-mobile-app") and upload the
+#      ENTIRE contents of this flutter_app folder to it (GitHub's web
+#      "Add file -> Upload files" works fine, including this .github folder).
+#   3) Open the repo's "Actions" tab — this workflow runs automatically
+#      after the upload (or click "Run workflow" to trigger it manually).
+#   4) Wait ~3-5 minutes for the green checkmark.
+#   5) Open the finished run, scroll to "Artifacts", and tap
+#      "csa-platform-release-apk" to download the APK straight to your phone.
+#   6) Open the downloaded file to install it (Android will prompt you to
+#      allow installs from this source the first time — that's normal for
+#      any APK not distributed through Google Play).
+
+on:
+  push:
+    branches: [ main, master ]
+  workflow_dispatch: {}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.24.0'
+          channel: 'stable'
+
+      - name: Generate Android platform files
+        # This repo ships only lib/ + pubspec.yaml + assets/ to stay small.
+        # This step generates the missing android/ folder without touching
+        # any existing file (flutter create never overwrites files that
+        # already exist), so it's safe to run on every build.
+        run: flutter create --platforms=android --org com.kaust.csa .
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Build release APK
+        run: flutter build apk --release
+
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: csa-platform-release-apk
+          path: build/app/outputs/flutter-apk/app-release.apk
